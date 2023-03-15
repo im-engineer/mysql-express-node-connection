@@ -36,31 +36,233 @@ var client = hl7.Server.createTcpClient('localhost', 7777);
 
 //create a message
 var msg = new hl7.Message(
-    "FORMENTRY",
-    "EPICADT",
-    "AMRS",
-    "HL7LISTENER",
-    "AMRS",
-    "20050217152845", //This field has 2 components
+    "OXV",
+    "1",
+    "Local^Reciver",
+    "Local^Facility",
+    "dateTime",
     "",
     "ORU^R01",
-    "AMRS20050217152845",
+    "599102",
     "P",
-    "2.5",
+    "2.3"
+)
+msg.addSegment("EVN",
+    "",
+    "dateTime",
+    "",
+    "",
+    "Rohan",
+)
+
+msg.addSegment("PID",
+    "",
+    "",
+    "1MT^0^M10",
+    "",
+    "Patient^Jonny^Dee^^DR",
+    "Patient^Momma^Thee^^MS",
+    "20040101000000",
+    "M",
+    "",
+    "B",
+    "555 Johnson Road^Apt. 555^Indianapolis^IN^46202^USA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Indianapolis, IN",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+)
+
+msg.addSegment(
+    "PV1",
+    "1",
+    "O",
+    "^^^^^^^^MTRH^1^AMRS",
+    "2",
+    "",
+    "",
+    "1^Mamlin^Joseph^^^^^^^^8^M10^^AMRS",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "20050217140000",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "V"
+)
+
+msg.addSegment(
+    "ORC",
+    "RE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "20050221130000",
+    "1^Enterer^Ima^^^^^^^^^^^AMRS"
+)
+
+msg.addSegment(
+    "OBR",
     "1",
     "",
     "",
+    "1238^MEDICAL RECORD OBSERVATIONS^DCT",
     "",
     "",
-    "",
-    "",
-    "",
-    "1^AMRS-ELDORET^http://schemas.openmrs.org/2006/FormEntry/formId^URI",
-    // "1817457",
-    // "D",
-    // "2.5"
-);
+    ""
+)
 
+msg.addSegment(
+    "OBX",
+    "1",
+    "CE",
+    "1082^REVIEW OF SYSTEMS, CENTRAL NERVOUS SYSTEM^DCT",
+    "",
+    "207^DEPRESSION^DCT",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "20050217204000"
+)
+
+msg.addSegment(
+    "OBX",
+    "2",
+    "SN",
+    "5497^CD4 COUNT^DCT",
+    "",
+    "<^10",
+    "cells/mm3",
+    "10-1500",
+    "L",
+    "",
+    "",
+    "F",
+    "",
+    "",
+    "20050217204000"
+)
+
+msg.addSegment(
+    "OBX",
+    "3",
+    "NM",
+    "5089^WEIGHT (KG)^DCT",
+    "",
+    "25",
+    "kg",
+    "20-300",
+    "L",
+    "",
+    "",
+    "F",
+    "",
+    "",
+    "20050217204000"
+)
+
+msg.addSegment(
+    "OBX",
+    "4",
+    "TS",
+    "1191^HISTORICAL DRUG STOP DATE^DCT",
+    "",
+    "20050101",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "F",
+    "",
+    "",
+    "",
+    "20050217204000"
+)
+
+msg.addSegment(
+    "MSA",
+    "AR",
+    "AMRS20050217152845"
+)
+
+msg.addSegment(
+    "ERR",
+    "",
+    "PID^1^3^^2",
+    "204",
+    "E"
+)
 console.log('******sending message*****')
 client.send(msg, function (err, ack) {
     console.log('******ack received*****')
