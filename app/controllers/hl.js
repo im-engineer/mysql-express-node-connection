@@ -263,6 +263,7 @@ msg.addSegment(
     "204",
     "E"
 )
+
 console.log('******sending message*****')
 client.send(msg, function (err, ack) {
     console.log('******ack received*****')
