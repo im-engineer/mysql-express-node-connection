@@ -151,118 +151,128 @@ msg.addSegment(
     "V"
 )
 
-msg.addSegment(
-    "ORC",
-    "RE",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "20050221130000",
-    "1^Enterer^Ima^^^^^^^^^^^AMRS"
+// msg.addSegment(
+//     "ORC",
+//     "RE",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "20050221130000",
+//     "1^Enterer^Ima^^^^^^^^^^^AMRS"
+// )
+
+// msg.addSegment(
+//     "OBR",
+//     "1",
+//     "",
+//     "",
+//     "1238^MEDICAL RECORD OBSERVATIONS^DCT",
+//     "",
+//     "",
+//     ""
+// )
+
+// msg.addSegment(
+//     "OBX",
+//     "1",
+//     "CE",
+//     "1082^REVIEW OF SYSTEMS, CENTRAL NERVOUS SYSTEM^DCT",
+//     "",
+//     "207^DEPRESSION^DCT",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "20050217204000"
+// )
+
+// msg.addSegment(
+//     "OBX",
+//     "2",
+//     "SN",
+//     "5497^CD4 COUNT^DCT",
+//     "",
+//     "<^10",
+//     "cells/mm3",
+//     "10-1500",
+//     "L",
+//     "",
+//     "",
+//     "F",
+//     "",
+//     "",
+//     "20050217204000"
+// )
+
+// msg.addSegment(
+//     "OBX",
+//     "3",
+//     "NM",
+//     "5089^WEIGHT (KG)^DCT",
+//     "",
+//     "25",
+//     "kg",
+//     "20-300",
+//     "L",
+//     "",
+//     "",
+//     "F",
+//     "",
+//     "",
+//     "20050217204000"
+// )
+
+// msg.addSegment(
+//     "OBX",
+//     "4",
+//     "TS",
+//     "1191^HISTORICAL DRUG STOP DATE^DCT",
+//     "",
+//     "20050101",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "",
+//     "F",
+//     "",
+//     "",
+//     "",
+//     "20050217204000"
+// )
+
+// msg.addSegment(
+//     "MSA",
+//     "AR",
+//     "AMRS20050217152845"
+// )
+
+// msg.addSegment(
+//     "ERR",
+//     "",
+//     "PID^1^3^^2",
+//     "204",
+//     "E"
+// )
+
+msg.addSegment("OBR",
+    "", "", "", "", "", "", "", "20010501141500.0000", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "F", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
 )
 
-msg.addSegment(
-    "OBR",
-    "1",
-    "",
-    "",
-    "1238^MEDICAL RECORD OBSERVATIONS^DCT",
-    "",
-    "",
-    ""
+msg.addSegment("OBX",
+    "", "1", "HD", "SR Instance UID", "", "", "1.113654.1.2001.30.2.1", "", "", "", "", "", "", "F", "", "", "", "", ""
 )
 
-msg.addSegment(
-    "OBX",
-    "1",
-    "CE",
-    "1082^REVIEW OF SYSTEMS, CENTRAL NERVOUS SYSTEM^DCT",
-    "",
-    "207^DEPRESSION^DCT",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "20050217204000"
-)
-
-msg.addSegment(
-    "OBX",
-    "2",
-    "SN",
-    "5497^CD4 COUNT^DCT",
-    "",
-    "<^10",
-    "cells/mm3",
-    "10-1500",
-    "L",
-    "",
-    "",
-    "F",
-    "",
-    "",
-    "20050217204000"
-)
-
-msg.addSegment(
-    "OBX",
-    "3",
-    "NM",
-    "5089^WEIGHT (KG)^DCT",
-    "",
-    "25",
-    "kg",
-    "20-300",
-    "L",
-    "",
-    "",
-    "F",
-    "",
-    "",
-    "20050217204000"
-)
-
-msg.addSegment(
-    "OBX",
-    "4",
-    "TS",
-    "1191^HISTORICAL DRUG STOP DATE^DCT",
-    "",
-    "20050101",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "F",
-    "",
-    "",
-    "",
-    "20050217204000"
-)
-
-msg.addSegment(
-    "MSA",
-    "AR",
-    "AMRS20050217152845"
-)
-
-msg.addSegment(
-    "ERR",
-    "",
-    "PID^1^3^^2",
-    "204",
-    "E"
-)
+msg.addSegment("OBX","2","TX","SR Text","","Radiology Report History Cough Findings PA evaluation of the chest demonstrates the lungs to be expanded and clear.  Conclusions Normal PA chest x-ray.","","","","","","F","","","","","")
 
 console.log('******sending message*****')
 client.send(msg, function (err, ack) {
