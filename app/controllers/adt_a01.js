@@ -1,5 +1,5 @@
 var hl7 = require('simple-hl7');
-///////////////////SERVER/////////////////////
+//<-------------------------------------- SERVER ------------------------------------>
 var app = hl7.tcp();
 app.use(function (req, res, next) {
     //req.msg is the HL7 message
@@ -23,32 +23,91 @@ app.use(function (err, req, res, next) {
     msa.setField(1, 'AR');
     res.ack.addSegment('ERR', err.message);
     res.end();
-});
+}); 
+
 //Listen on port 7777
 app.start(7777); //optionally pass encoding here, app.start(1234, 'latin-1');
-///////////////////SERVER/////////////////////
-///////////////////CLIENT/////////////////////
+//<-------------------------------------- SERVER ------------------------------------>
+//<-------------------------------------- CLIENT ------------------------------------>
+
+
 var client = hl7.Server.createTcpClient('localhost', 7777);
 
+
+//create a message
 var msg = new hl7.Message("OXV",
-    "SENDING_FAC",
-    "RECEIVING_APP",
-    "RECEIVING_FAC",
-    "20220101120000",
+    "SendingFac",
+    "ReceivingApp",
+    "ReceivingFac",
+    "20200303144501",
     "",
-    "ACK^A01",
+    "ADT^A02^ADT_A02",
     "MSGID123456789",
     "P",
-    "2.3"
+    "2.5",
+    "",
+    "",
+    "",
+    "",
+    ""
 )
 
-msg.addSegment("MSA",
-    "AA",
-    "MSGID123456789"
+msg.addSegment("EVN",
+    "A02",
+    "20200303144501",
+    "",
+    "",
+    "John^Smith"
+)
+
+msg.addSegment("PID",
+    "1",
+    "",
+    "12345^^^HospitalA^MR",
+    "",
+    "Smith^John^^^Mr.",
+    "",
+    "19851004",
+    "M",
+    "",
+    "",
+    "1234 Main St.^^Anytown^MI^48000^USA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "12345"
+)
+
+msg.addSegment("PV1",
+    "",
+    "E",
+    "^^^WardA^RoomA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "9876543210^Dr. Smith"
 )
 
 console.log('******sending message*****')
 client.send(msg, function (err, ack) {
     console.log('******ack received*****')
-    //   console.log(ack.log());
 });

@@ -82,6 +82,13 @@ msg.addSegment("PV1",
     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
 )
 
+msg.addSegment("PRB",
+    "1",
+    "",
+    "Hypertension",
+    "20220321"
+)
+
 msg.addSegment("NTE",
     "1",
     "",
