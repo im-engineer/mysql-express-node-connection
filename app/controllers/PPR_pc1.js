@@ -1,6 +1,5 @@
 var hl7 = require('simple-hl7');
-//<-------------------------------------- SERVER ------------------------------------>
-
+///////////////////SERVER/////////////////////
 var app = hl7.tcp();
 app.use(function (req, res, next) {
     //req.msg is the HL7 message
@@ -27,43 +26,51 @@ app.use(function (err, req, res, next) {
 });
 //Listen on port 7777
 app.start(7777); //optionally pass encoding here, app.start(1234, 'latin-1');
-//<-------------------------------------- SERVER ------------------------------------>
-//<-------------------------------------- CLIENT ------------------------------------>
 
 
 var client = hl7.Server.createTcpClient('localhost', 7777);
 //create a message
-var msg = new hl7.Message("SENDING_APPLICATION",  //Sending Application
-    "SENDING_FACILITY",  //Sending Facility
-    "RECEIVING_APPLICATION",// Reciving Application
-    "RECEIVING_FACILITY",//Reciving Facility
-    "202203221200",//Date/Time of message
+var msg = new hl7.Message("OXV",
+    "SENDING_FACILITY",
+    "RECEIVING_APPLICATION",
+    "RECEIVING_FACILITY",
+    "20230321090000",
     "",
-    "ADT^A08",// Message Type
-    "MSG00001",//Message Control ID
-    "P",//Processing ID
-    "2.3.1"
+    "PPR^PC1",
+    "1234567",
+    "P",
+    "2.5",
+    "", "", "", "", ""
 )
 
-msg.addSegment("EVN",
-    "A08",
-    "202203221200", //Recorded date/time
-    "", "",
-    "USERNAME" //Operator ID
+msg.addSegment("PID",
+    "1",
+    "",
+    "1234567^^^SENDING_FACILITY^MRN",
+    "",
+    "DOE^JANE^",
+    "",
+    "19800101",
+    "F",
+    "","",
+    "123 Main St^^Anytown^NY^12345",
+    "",
+    "(555)555-1234",
+    "", "", "S", "",
+    "123456789",
+    "123-45-6789",
+    "", "", "", ""
 )
 
-msg.addSegment("PID", 
-    "",
-    "",
-    "PATIENT_ID",  //Patient Identifier List 
-    "",
-    "Smith^John",  //Patient Name
-    "",
-    "19700101",  //Date/Time of Birth
-    "GENDER",   //Administrative Sex
-    "", "", "", "PHONE_NUMBER", "", "",
-    "OTHER_ID",
-    "","",""
+msg.addSegment("PV2",
+    "","","","", "", "", "",
+    "20230321"
+)
+
+msg.addSegment("NTE",
+    "1",
+    "L",
+    "Please update the patient's allergy list"
 )
 
 console.log('******sending message*****')

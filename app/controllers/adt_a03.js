@@ -119,6 +119,21 @@ msg.addSegment("PV1",
     ""
 )
 
+msg.addSegment("OBX",
+    "1",
+    "TX",
+    "Discharge Note",
+    "",
+    "Patient discharged with stable vital signs and improved symptoms",
+    "F",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+)
+
 console.log('******sending message*****')
 client.send(msg, function (err, ack) {
     console.log('******ack received*****')
