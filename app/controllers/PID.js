@@ -5,24 +5,24 @@ const message = `MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|Tue Mar 21 2023 11
 const parser = new hl7.Parser({ segmentSeperator: '\r' });
 const msg = parser.parse(message);
 
-const segment = msg.getSegment('MSH');
+
+console.log("")
+console.log("EVN DATA:")
 const segment1 = msg.getSegment('EVN');
-const segment2 = msg.getSegment('PID');
+segment1.fields.forEach((field, index) => {
+    console.log(`Field ${index + 1}: ${field.value}`);
+});
+
+console.log("")
+console.log("PID DATA:")
+const segments = msg.getSegment('PID');
+segments.fields.forEach((field, index) => {
+    console.log(`Field ${index + 1}: ${field.value}`);
+});
+
+console.log("")
+console.log("PV1 DATA:")
 const segment3 = msg.getSegment('PV1');
-
-const fields = segment2.getField();
-
-console.log("fields "+ fields)
-for (let i = 0; i < fields.length; i++) {
-    // console.log(`Field ${i + 1}: ${fields[i].value[0]}`, "mmmmm");
-    console.log('Field ' + (i + 1) + JSON.stringify(fields[i]));
-}
-
-// console.log(segment);
-// console.log(segment1);
-// console.log(segment2);
-// console.log(segment3);
-
-
-const sendingApp = segment1.getField(7);
-console.log(sendingApp);
+segment3.fields.forEach((field, index) => {
+    console.log(`Field ${index + 1}: ${field.value}`);
+});
