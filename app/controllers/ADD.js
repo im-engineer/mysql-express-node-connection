@@ -5,6 +5,12 @@ const message = `MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|Tue Mar 21 2023 11
 const parser = new hl7.Parser({ segmentSeperator: '\r' });
 const msg = parser.parse(message);
 
+console.log("");
+console.log("MSH DATA:");
+const segment0 = msg.segments[0]; // Get the first segment (MSH)
+segment0.fields.forEach((field, index) => {
+    console.log(`Field ${index + 1}: ${field.value}`);
+});
 
 console.log("")
 console.log("EVN DATA:")
@@ -26,3 +32,19 @@ const segment3 = msg.getSegment('PV1');
 segment3.fields.forEach((field, index) => {
     console.log(`Field ${index + 1}: ${field.value}`);
 });
+
+
+
+const jsonMsg = {};
+msg.segments.forEach(segment => {
+    const segmentName = segment.name;
+    console.log(segmentName,"segmentName")
+    jsonMsg[segmentName] = {};
+    segment.fields.forEach((field, index) => {
+        const fieldName = `field${index + 1}`;
+        jsonMsg[segmentName][fieldName] = field.value;
+    });
+});
+
+console.log(JSON.stringify(jsonMsg, null, 2));
+
