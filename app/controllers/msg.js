@@ -2,6 +2,11 @@ const hl7 = require('simple-hl7');
 
 const message = 'MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|Tue Mar 21 2023 11:16:56 GMT+0530 (India Standard Time)||ADT^A01|599102|P|2.3\nEVN||Tue Mar 21 2023 11:16:56 GMT+0530 (India Standard Time)|||||Tue Mar 21 2023 11:16:56 GMT+0530 (India Standard Time)\nPID|1|641944cddf5137cf674005f7|65465465|641944cddf5137cf674005f7|Ajinkya^ajinkya||2023-03-21|male||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|654654655||1|2||40007716^^^AccMgr^VN^1||||||||||||NO NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y|||||||||||||\nPV1|1|O|PREOP^101^1^1^^^S|3';
 
+const evnFields = message.split('|');
+console.log(evnFields[2]);
+
+
+
 const parser = new hl7.Parser({ segmentSeperator: '\n' });
 const hl7msg = parser.parse(message);
 
