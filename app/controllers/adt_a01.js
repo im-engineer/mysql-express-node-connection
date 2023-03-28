@@ -20,6 +20,7 @@ app.use(function (err, req, res, next) {
     console.log('******ERROR*****')
     console.log(err);
     var msa = res.ack.getSegment('MSA');
+    console.log(msa)
     msa.setField(1, 'AR');
     res.ack.addSegment('ERR', err.message);
     res.end();
@@ -108,6 +109,6 @@ msg.addSegment("PV1",
 )
 
 console.log('******sending message*****')
-client.send(msg, function (err, ack) {
+client.send (msg, function (err, ack) {
     console.log('******ack received*****')
 });

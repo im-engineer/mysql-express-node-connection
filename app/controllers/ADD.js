@@ -5,26 +5,26 @@ const message = `MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|Tue Mar 21 2023 11
 const parser = new hl7.Parser({ segmentSeperator: '\r' });
 const msg = parser.parse(message);
 
-console.log("");
-console.log("MSH DATA:");
-const segment0 = msg.segments[0]; // Get the first segment (MSH)
-segment0.fields.forEach((field, index) => {
-    console.log(`Field ${index + 1}: ${field.value}`);
-});
+// console.log("");
+// console.log("MSH DATA:");
+// const segment0 = msg.segments[0]; // Get the first segment (MSH)
+// segment0.fields.forEach((field, index) => {
+//     console.log(`Field ${index + 1}: ${field.value}`);
+// });
 
-console.log("")
-console.log("EVN DATA:")
-const segment1 = msg.getSegment('EVN');
-segment1.fields.forEach((field, index) => {
-    console.log(`Field ${index + 1}: ${field.value}`);
-});
+// console.log("")
+// console.log("EVN DATA:")
+// const segment1 = msg.getSegment('EVN');
+// segment1.fields.forEach((field, index) => {
+//     console.log(`Field ${index + 1}: ${field.value}`);
+// });
 
-console.log("")
-console.log("PID DATA:")
-const segments = msg.getSegment('PID');
-segments.fields.forEach((field, index) => {
-    console.log(`Field ${index + 1}: ${field.value}`);
-});
+// console.log("")
+// console.log("PID DATA:")
+// const segments = msg.getSegment('PID');
+// segments.fields.forEach((field, index) => {
+//     console.log(`Field ${index + 1}: ${field.value}`);
+// });
 
 console.log("")
 console.log("PV1 DATA:")
@@ -32,8 +32,6 @@ const segment3 = msg.getSegment('PV1');
 segment3.fields.forEach((field, index) => {
     console.log(`Field ${index + 1}: ${field.value}`);
 });
-
-
 
 const jsonMsg = {};
 msg.segments.forEach(segment => {
@@ -46,5 +44,5 @@ msg.segments.forEach(segment => {
     });
 });
 
-console.log(JSON.stringify(jsonMsg, null, 2));
+console.log(JSON.stringify(jsonMsg, null,1));
 
