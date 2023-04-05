@@ -1,6 +1,6 @@
 const hl7 = require('simple-hl7');
 
-const message = 'MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|20230405||PPR^PC1|642d09ce35141bf3221f28fa|P642d09ce35141bf3221f28fa|2.3\nEVN||20230405|||||20230405\nPID|1|642d095935141bf3221f2875|undefined|642d095935141bf3221f2875|U2FsdGVkX18R40wQuhNn277BVhTdcotfMyHuKLqOBxA=^undefined||20230405|undefined||1|||undefined|||||||||||||||||||||||||||||||||||||\nNTE|1|L|Johns Spo2 is at high Risk';
+const message = 'MSH|^~\&|OXVIRTUAL|1|OXSIMULATOR|Local^Facility|20230405||ORU^R01|642d4adc57a84ebfad7ad1e0|P642d4adc57a84ebfad7ad1e0|2.3\nEVN||Wed Apr 05 2023 10:18:04 GMT+0000 (Coordinated Universal Time)|||||Wed Apr 05 2023 10:18:04 GMT+0000 (Coordinated Universal Time)\nPID|1|642cf7c92b2eec630ac34614|568548848|642cf7c92b2eec630ac34614|PT122^PTL22||20040401|male||1||1|4844848490||1|2||40007716^^^AccMgr^VN^1||||||||||||NO NK1|1||||||Y|||||||||||||\nOBX|1|TX|63eb299d9c8b589d12ca858a^Spo2||52|%|||||F';
 
 const evnFields = message.split('|');
 console.log(evnFields[2]);
@@ -44,9 +44,13 @@ const jsonmsg = {
     PatientAddress:hl7msg.getSegment('PID').getField(11),
     PhoneNumber:hl7msg.getSegment('PID').getField(13)
 },
-NTE:{
-  SetID: hl7msg.getSegment('NTE').getField(1),
-  Comment: hl7msg.getSegment('NTE').getField(3),
+OBX:{
+  SetID: hl7msg.getSegment('OBX').getField(1),
+  ValueType:hl7msg.getSegment('OBX').getField(2),
+  ObservationIdentifier: hl7msg.getSegment('OBX').getField(3),
+  ObservationValue: hl7msg.getSegment('OBX').getField(5),
+  Units: hl7msg.getSegment('OBX').getField(6),
+  ObservationResultStatus: hl7msg.getSegment('OBX').getField(11),
 }
 }
 console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)

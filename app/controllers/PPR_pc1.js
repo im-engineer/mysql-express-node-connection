@@ -70,7 +70,7 @@ msg.addSegment("PV2",
 msg.addSegment("NTE",
     "1",
     "L",
-    "Please update the patient's allergy list"
+    "Johns Spo2 is at high Risk"
 )
 
 console.log('******sending message*****')

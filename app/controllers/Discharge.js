@@ -1,6 +1,6 @@
 const hl7 = require('simple-hl7');
 
-const message = 'MSH|^~\\&|OXV|1|Local^Reciver|Local^Facility|20230405||PPR^PC1|642d09ce35141bf3221f28fa|P642d09ce35141bf3221f28fa|2.3\nEVN||20230405|||||20230405\nPID|1|642d095935141bf3221f2875|undefined|642d095935141bf3221f2875|U2FsdGVkX18R40wQuhNn277BVhTdcotfMyHuKLqOBxA=^undefined||20230405|undefined||1|||undefined|||||||||||||||||||||||||||||||||||||\nNTE|1|L|Johns Spo2 is at high Risk';
+const message = 'MSH|^~\&|OXV|1|Local^Reciver|Local^Facility|20230405||ADT^A03|642d6a4f57a84ebfad7ad1f3|P642d6a4f57a84ebfad7ad1f3|2.3\nEVN||20230405|||||20230405\nPID|1|641849af5a7e1ed6d1b171c5|5555555|641849af5a7e1ed6d1b171c5|a12225^a22225||20230320|male||1|||545454555|||||||||||||||||||||||||||||||||||||\nPV1|641849af5a7e1ed6d1b171c5|||||||||||||||||||||||||||||||||||||||||||20230320|20230405||||';
 
 const evnFields = message.split('|');
 console.log(evnFields[2]);
@@ -25,13 +25,8 @@ const jsonmsg = {
     VersionID: hl7msg.header.versionID,
   },
   EVN: {
-    EventTypeCode: hl7msg.getSegment('EVN').getField(1),
-    DateTime: hl7msg.getSegment('EVN').getField(2),
-    RecordedDateTime: hl7msg.getSegment('EVN').getField(3),
-    UserID: hl7msg.getSegment('EVN').getField(4),
-    EventTypeReasonCode: hl7msg.getSegment('EVN').getField(5),
-    OperatorID: hl7msg.getSegment('EVN').getField(6),
-    EventOccurred: hl7msg.getSegment('EVN').getField(7),
+    RecordedDateTime: hl7msg.getSegment('EVN').getField(2),
+    EventFaclitiy: hl7msg.getSegment('EVN').getField(7),
   },
   PID: {
     SetID: hl7msg.getSegment('PID').getField(1),
@@ -41,12 +36,13 @@ const jsonmsg = {
     PatientName: hl7msg.getSegment('PID').getField(5),
     DateTimeOfBirth: hl7msg.getSegment('PID').getField(7),
     AdministrativeSex: hl7msg.getSegment('PID').getField(8),
-    PatientAddress:hl7msg.getSegment('PID').getField(11),
+    Race:hl7msg.getSegment('PID').getField(10),
     PhoneNumber:hl7msg.getSegment('PID').getField(13)
 },
-NTE:{
-  SetID: hl7msg.getSegment('NTE').getField(1),
-  Comment: hl7msg.getSegment('NTE').getField(3),
+PV1:{
+  SetID: hl7msg.getSegment('PV1').getField(1),
+  AdmitDateTime:hl7msg.getSegment('PV1').getField(44),
+  DischargeDateTime: hl7msg.getSegment('PV1').getField(45),
 }
 }
 console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
