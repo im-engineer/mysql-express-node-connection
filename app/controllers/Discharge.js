@@ -45,7 +45,19 @@ PV1:{
   DischargeDateTime: hl7msg.getSegment('PV1').getField(45),
 }
 }
-console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
+// console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
 
 
-
+const output ={
+  mrn:jsonmsg.PID.PatientIdentifierList,
+  firstName:jsonmsg.PID.PatientName.split('^')[0],
+  lastName:jsonmsg.PID.PatientName.split('^')[1],
+  emailId:"",
+  contactNo:jsonmsg.PID.PhoneNumber,
+  gender:jsonmsg.PID.AdministrativeSex,
+  dob:jsonmsg.PID.DateTimeOfBirth,
+  addmissionDate:jsonmsg.PV1.AdmitDateTime,
+  dischargeDate:jsonmsg.PV1.DischargeDateTime,
+  dischargeSummary:""
+}
+console.log("🚀 ~ file: Discharge.js:62 ~ output:", output)
