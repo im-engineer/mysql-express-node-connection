@@ -40,7 +40,7 @@ const jsonmsg = {
 
   }
 }
-console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
+// console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
 
 const output = {
   mrn:jsonmsg.EVN.MRN,
