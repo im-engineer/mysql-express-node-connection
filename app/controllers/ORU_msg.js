@@ -53,4 +53,53 @@ OBX:{
   ObservationResultStatus: hl7msg.getSegment('OBX').getField(11),
 }
 }
-console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
+// console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
+
+const output = {
+  mrn:jsonmsg.PID.PatientIdentifierList,
+  patientId: jsonmsg.PID.PatientID,
+  "patientObj": [
+     {
+     "colorCode": "#007e0c",
+     "deviceType": "",
+     "maxRange": "100",
+     "minRange": "0",
+     "modeType": "Manual Entry",
+     observationObj: [
+     {
+     "range_risk_min_value": 50,
+     "range_risk_max_value": 91,
+     "riskScoreVal": "3",
+     "colorCode": "#ea3406"
+     },
+     {
+     "range_risk_min_value": 92,
+     "range_risk_max_value": 93,
+     "riskScoreVal": "2",
+     "colorCode": "#cdf312"
+     },
+     {
+     "range_risk_min_value": 94,
+     "range_risk_max_value": 95,
+     "riskScoreVal": "1",
+     "colorCode": "#12ab21"
+     },
+     {
+     "range_risk_min_value": 96,
+     "range_risk_max_value": 100,
+     "riskScoreVal": "0",
+     "colorCode": "#007e0c"
+     }
+     ],
+     "observationType": jsonmsg.OBX.ObservationIdentifier.split('^')[1],
+     "parameterType": "range",
+     "precision": "0",
+     "taskCollectionID": jsonmsg.OBX.ObservationIdentifier.split('^')[0],
+     "units": jsonmsg.OBX.Units,
+     "value": jsonmsg.OBX.ObservationValue
+    } 
+  ],
+  pendingId:"",
+  taskCollectionId:jsonmsg.OBX.ObservationIdentifier.split('^')[0]
+}
+console.log(output)

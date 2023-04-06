@@ -41,3 +41,17 @@ const jsonmsg = {
   }
 }
 console.log("🚀 ~ file: msg.js:41 ~ jsonmsg:", jsonmsg)
+
+const output = {
+  mrn:jsonmsg.EVN.MRN,
+  firstname:jsonmsg.EVN.Name.split('^')[0],
+  lastname:jsonmsg.EVN.Name.split('^')[1],
+  emailId:"",
+  contactNo:jsonmsg.EVN.PhoneNumber,
+  gender:jsonmsg.EVN.Sex,
+  dob:jsonmsg.EVN.DateTime,
+  profileImg:"",
+  assignCarePathway:"",
+  id:jsonmsg.EVN.ID
+}
+console.log("🚀 ~ file: Update_msg.js:57 ~ output:", output)
